@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P1ECE 六周年 · 感谢页</title>
+  <style>
+    /* 重置边距，保证全屏铺满 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 关键：让 html 和 body 高度 100% */
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      /* 背景图设置：铺满页面，不重复，居中，固定（可选，让背景不随滚动） */
+      background-image: url('https://img.remit.ee/i/OV3h5z8FVYvq');
+      background-size: cover;           /* 铺满 */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;     /* 视觉上更稳定，可保留或删掉 */
+      
+      /* 使用 flex 让蒙版居中显示，并留出边距使蒙版“略小于底图” */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2vw;                     /* 留出空隙，让蒙版小于底图 */
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      /* 确保背景图覆盖整个视口（特别是移动端） */
+      min-height: 100vh;
+    }
+
+    /* 白色蒙版：70% 透明白，圆角，稍小于底图（通过 body 的 padding + 内容宽度限制） */
+    .white-overlay {
+      background-color: rgba(255, 255, 255, 0.7);  /* 70% 透明度纯白 */
+      border-radius: 2.5rem;                        /* 大圆角，看起来柔和 */
+      padding: 3rem 3.5rem;                         /* 内边距让内容不贴边 */
+      width: 100%;
+      max-width: 900px;                             /* 限制最大宽度，使蒙版明显小于底图（配合 body 的 padding） */
+      /* 添加一点阴影增加层次感（可选） */
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      /* 确保背景色半透明，文字清晰 */
+      color: #1e1e1e;                                /* 深灰文字，与白底搭配 */
+      
+      /* 如果内容很少，保持垂直居中看起来舒服 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* 主标题：感谢 P1ECE 的游玩~请大家度过幸福的六周年吧~ */
+    .main-title {
+      font-size: 2.6rem;          /* 大号文字 */
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;       /* 与下方文字间距 */
+      color: #1a1a1a;
+      word-break: break-word;
+    }
+
+    /* 副文字：略小一行，详细说明 */
+    .sub-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #2c2c2c;
+      margin-bottom: 1.2rem;       /* 与署名间距 */
+      font-weight: 400;
+      max-width: 85%;               /* 让文字阅读更舒适，不撑满整行 */
+      /* 如果希望文字宽度自适应，可以去掉 max-width，但保持美观建议保留 */
+    }
+
+    /* 署名行：略小一行字，@rinin，带下划线可点击 */
+    .signature {
+      font-size: 0.95rem;
+      color: #3a3a3a;
+      margin-top: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .signature a {
+      color: #1e1e1e;
+      text-decoration: underline;
+      text-underline-offset: 4px;    /* 下划线离文字远一点，更精致 */
+      text-decoration-thickness: 1.5px;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+    }
+
+    .signature a:hover {
+      opacity: 0.65;                 /* 悬停反馈 */
+    }
+
+    /* ----- 响应式调整，保证在不同屏幕上都好看 ----- */
+    @media (max-width: 768px) {
+      body {
+        padding: 1.5rem;             /* 移动端留白稍小，但仍让蒙版小于底图 */
+      }
+
+      .white-overlay {
+        padding: 2rem 1.8rem;
+        border-radius: 2rem;
+      }
+
+      .main-title {
+        font-size: 2rem;
+      }
+
+      .sub-text {
+        font-size: 1rem;
+        max-width: 100%;             /* 小屏幕上允许更宽 */
+        line-height: 1.6;
+      }
+
+      .signature {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem;
+      }
+
+      .white-overlay {
+        padding: 1.8rem 1.2rem;
+        border-radius: 1.8rem;
+      }
+
+      .main-title {
+        font-size: 1.7rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .sub-text {
+        font-size: 0.95rem;
+      }
+
+      .signature {
+        font-size: 0.85rem;
+      }
+    }
+
+    /* 如果希望背景图在移动端也严格铺满，确保没有滚动留白，额外处理 */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;  /* 移动端固定背景可能体验不好，改为滚动 */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 白色蒙版容器：透明度70%，圆角，略小于底图（由 body padding + max-width 共同实现） -->
+  <div class="white-overlay">
+    <!-- 左侧大文字（第一行） -->
+    <h1 class="main-title">
+      感谢P1ECE的游玩~<br>
+      请大家度过幸福的六周年吧~
+    </h1>
+
+    <!-- 下方一行略小的文字（游戏说明等） -->
+    <p class="sub-text">
+      此游戏网页代码是deepseek写的，部分图片由豆包、GPT、Gemini生成；游戏剧情基本按照P1Harmony世界观运行，部分时间节点有做修改，仅供娱乐。需要改进、有趣的建议、小发现欢迎留言或者dm我呀~
+    </p>
+
+    <!-- 再略小一行字署名，带下划线，点击跳转 -->
+    <p class="signature">
+      <a href="https://xhslink.cn/o/5MEqN1GMfPE" target="_blank" rel="noopener noreferrer">@rinin</a>
+    </p>
+  </div>
+</body>
+</html>
